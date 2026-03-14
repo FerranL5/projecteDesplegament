@@ -1,4 +1,4 @@
-// src/App.jsx canvi canvi canvi
+// src/App.jsx
 import { useState, useEffect } from "react";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
@@ -54,7 +54,7 @@ function App() {
 
   return (
     <div className="container my-5">
-      <h1 className="mb-4">Gestor de Tasques</h1>
+      <h1 className="mb-4">Gestor de Tasques canvit</h1>
 
       <div className="mb-4">
         <button className="btn btn-info" onClick={handleLoadSeedTasks}>
