@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1",
+    "taskName": "Comprar menjar",
+    "taskCategory": "Casa",
+    "taskDueDate": "2025-12-20",
+    "taskPriority": "alta",
+    "taskImportant": true,
+    "taskDescription": "Comprar menjar per a tota la setmana",
+    "done": false
+  },
+  {
+    "id": "2",
+    "taskName": "Estudiar React",
+    "taskCategory": "Estudis",
+    "taskDueDate": "2025-12-18",
+    "taskPriority": "mitja",
+    "taskImportant": false,
+    "taskDescription": "Repassar components i hooks",
+    "done": false
+  }
+]
