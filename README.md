@@ -1,81 +1,179 @@
-# Gestor de Tasques amb React
+# Projecte Tema 2 – Desenvolupament en Entorn Client
 
-## 1. Descripció de l'aplicació
-Aquest projecte és un gestor de tasques desenvolupat amb React. Permet crear, llistar, marcar com a feta i eliminar tasques de manera fàcil. L'aplicació guarda les dades en el navegador mitjançant `localStorage` per assegurar que no es perdin al refrescar la pàgina.
+Repositori del Projecte de Síntesi del mòdul de Desplegament d'Aplicacions Web.
 
----
-
-## 2. Captura del resultat final
-
-![alt text](<resultat.png>)
+> Aplicació web de gestió de tasques desenvolupada amb React, dockeritzada i desplegable amb una única comanda.
 
 ---
 
-## 3. Explicació breu de com executar el projecte
+## Descripció
 
-1. Clonar el repositori:
+Aplicació web per gestionar tasques personals. Permet:
 
-```bash
-git clone https://github.com/FerranL5/projecte_tema2.git
-cd projecte_tema2
+- Crear tasques amb una data límit d'entrega
+- Marcar tasques com a fetes
+- Eliminar tasques
+
+---
+
+## Integrants
+
+| Nom | Rol |
+|---|---|
+| Ferran Lorca Gallardo |
+
+---
+
+## Repositori
+
+https://github.com/FerranL5/projecteDesplegament/tree/main
+
+---
+
+## Arquitectura
+
+```
+┌─────────────────────────────┐
+│       Navegador             │
+│   http://localhost:8080     │
+└────────────┬────────────────┘
+             │
+┌────────────▼────────────────┐
+│   Docker – servei frontend  │
+│   Nginx (port 80 intern)    │
+│   Serveix el build de React │
+└─────────────────────────────┘
 ```
 
-2. Instal·lar les dependències:
+**Tecnologies:**
+- React + Vite
+- Nginx (servidor estàtic)
+- Docker + Docker Compose
+
+---
+
+## Requisits previs
+
+Abans d'executar el projecte necessites tenir instal·lat:
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- [Git](https://git-scm.com/)
+
+> No cal tenir Node.js instal·lat per executar amb Docker.
+
+---
+
+## Execució amb Docker *(recomanada)*
 
 ```bash
+# 1. Clona el repositori
+git clone https://github.com/USUARI/NOM-REPO.git  ← substitueix per la teva URL
+cd nom-repo
+
+# 2. Copia el fitxer d'entorn
+cp .env.example .env
+
+# 3. Construeix i arrenca l'aplicació
+docker compose up --build
+```
+
+Un cop arrencat, obre el navegador a:
+
+```
+http://localhost:8080
+```
+
+Per aturar l'aplicació:
+
+```bash
+docker compose down
+```
+
+---
+
+## Execució local *(sense Docker)*
+
+```bash
+# 1. Clona el repositori
+git clone https://github.com/USUARI/NOM-REPO.git
+cd nom-repo
+
+# 2. Instal·la les dependències
 npm install
-```
 
-3. Executar l'aplicació:
-
-```bash
+# 3. Arrenca el servidor de desenvolupament
 npm run dev
 ```
 
-4. Obre el navegador a l’adreça que mostra la terminal (normalment `http://localhost:5173`).
-
-5. Per carregar les dades de prova ho fem amb el botó "Carrega dades de prova".
+L'aplicació estarà disponible a `http://localhost:5173`
 
 ---
 
-## 4. Funcionalitats implementades
+## Variables d'entorn
 
-- Formulari de creació de tasques amb **React Hook Form** i **validació amb Zod**.
-- Llistat de totes les tasques creades.
-- Marcar tasques com a fetes / desfer-les.
-- Eliminar tasques de la llista.
-- Persistència de dades amb **localStorage**.
-- Carregar dades de prova amb un botó o automàticament si `VITE_USE_SEED=true`.
-- Componentització clara: `TaskForm`, `TaskList`, `TaskItem` i components de formulari reutilitzables (`Input`, `Select`, `RadioGroup`, `Checkbox`, `Textarea`).
+Copia `.env.example` com a `.env` i omple els valors si cal:
 
----
+```bash
+cp .env.example .env
+```
 
-## 5. Recursos utilitzats, biblioteques i fonts d'informació
+| Variable | Descripció | Exemple |
+|---|---|---|
+| `VITE_API_URL` | URL de l'API externa (si s'utilitza) | `http://localhost:3000` |
 
-- **React 18** + **Vite** com a entorn de desenvolupament.
-- **Bootstrap 5** per a l’estil visual.
-- **React Hook Form** per gestionar el formulari.
-- **Zod** per validar dades de manera declarativa.
-- **localStorage** per persistència de dades.
-- Fonts i tutorials consultats:
-  - [React Hook Form Documentation](https://react-hook-form.com/)
-  - [Zod Documentation](https://zod.dev/)
-  - [Bootstrap Docs](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
-  - Tutorials de gestió d’estat amb React i persistència a localStorage.
-  - Google
-  - Chat GPT
+> El fitxer `.env` **no es versiona** mai. Consulta [annex-gestio-secrets.md](./annex-gestio-secrets.md) per més informació.
 
 ---
 
-## 6. Passos seguits per la implementació del projecte (bitàcola)
+## Estructura del repositori
 
-1. **Creació del projecte amb Vite i React.**
-2. **Instal·lació de dependències**: Bootstrap, React Hook Form, Zod.
-3. **Definició de l’esquema de tasca (`taskSchema.js`)** amb totes les validacions obligatòries.
-4. **Creació de components reutilitzables**: Input, Select, RadioGroup, Checkbox, Textarea.
-5. **Implementació del formulari (`TaskForm.jsx`)** amb validacions i confirmació visual.
-6. **Implementació del llistat de tasques (`TaskList.jsx` i `TaskItem.jsx`)** amb botons de marcat/desmarcat i eliminar.
-7. **Gestió de l’estat a `App.jsx`** amb `useState` i `useEffect`.
-8. **Persistència amb `localStorage`** per assegurar que les tasques no desapareixen al refrescar.
-9. **Creació i integració de dades de prova (`seedTasks.json`)** i botó per carregar-les sense eliminar tasques existents.
-10. **Test manual de totes les funcionalitats** per assegurar que la creació, eliminació, toggle i persistència funcionen.
+```
+├── src/
+│   ├── components/       # Components React
+│   ├── App.jsx           # Component principal
+│   └── main.jsx          # Punt d'entrada
+├── public/
+├── Dockerfile            # Build multi-stage (Node + Nginx)
+├── docker-compose.yml    # Definició de serveis Docker
+├── .env.example          # Variables d'entorn (sense secrets)
+├── .gitignore
+├── README.md
+└── REPORT.md
+```
+
+---
+
+## Troubleshooting
+
+**El port 8080 ja està en ús:**
+```yaml
+# Edita docker-compose.yml i canvia el port esquerre:
+ports:
+  - "8081:80"   # ara accedeix a http://localhost:8081
+```
+
+**Error durant el build de Docker:**
+```bash
+# Neteja la caché de Docker i torna a intentar-ho
+docker compose down
+docker system prune -f
+docker compose up --build
+```
+
+**L'aplicació no es veu al navegador:**
+- Comprova que Docker Desktop està en execució
+- Assegura't que has esperat que el build finalitzi completament
+- Prova `docker compose logs` per veure si hi ha errors
+
+---
+
+## Documentació addicional
+
+- [`REPORT.md`](./REPORT.md) → Informe tècnic del projecte (Git, conflictes, Docker)
+- [`annex-gestio-secrets.md`](./annex-gestio-secrets.md) → Gestió de secrets en entorns professionals
+
+---
+
+## Llicència
+
+Projecte acadèmic – 2n DAW · Mòdul Desplegament d'Aplicacions Web
