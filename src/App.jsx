@@ -54,7 +54,7 @@ function App() {
 
   return (
     <div className="container my-5">
-      <h1 className="mb-4">Gestor de Tasques canviat a 2</h1>
+      <h1 className="mb-4">Gestor de Tasques canvit</h1>
       <div className="mb-4">
         <button className="btn btn-info" onClick={handleLoadSeedTasks}>
           Carrega dades de prova
